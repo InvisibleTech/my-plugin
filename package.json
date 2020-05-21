@@ -1,0 +1,27 @@
+{
+  "name": "my-plugin",
+  "version": "1.0.0",
+  "description": "Tutorial for Envoy",
+  "main": "index.js",
+  "engines": {
+    "node": "13.x"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/InvisibleTech/my-plugin.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/InvisibleTech/my-plugin/issues"
+  },
+  "homepage": "https://github.com/InvisibleTech/my-plugin#readme",
+  "dependencies": {
+    "@envoy/envoy-integrations-sdk": "^1.0.0",
+    "express": "^4.17.1"
+  }
+}
