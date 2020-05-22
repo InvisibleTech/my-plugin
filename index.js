@@ -45,6 +45,7 @@ app.post('/entry-sign-in', async (req, res) => {
     const job = envoy.job;
     const hello = envoy.meta.config.HELLO;
     const visitor = envoy.payload;
+    console.log(envoy.payload);
     const visitorName = visitor.attributes['full-name'];
 
     const message = `${hello} ${visitorName}!`; // our custom greeting

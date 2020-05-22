@@ -1,0 +1,39 @@
+https://tersesystems.com/blog/2015/12/17/the-right-way-to-use-securerandom/
+
+https://metebalci.com/blog/everything-about-javas-securerandom/
+
+https://stackoverflow.com/questions/9655181/how-to-convert-a-byte-array-to-a-hex-string-in-java
+
+https://www.oauth.com/oauth2-servers/client-registration/client-id-secret/
+
+https://www.baeldung.com/java-secure-random
+
+private static final char[] HEX_ARRAY = "0123456789ABCDEF".toCharArray();
+public static String bytesToHex(byte[] bytes) {
+    char[] hexChars = new char[bytes.length * 2];
+    for (int j = 0; j < bytes.length; j++) {
+        int v = bytes[j] & 0xFF;
+        hexChars[j * 2] = HEX_ARRAY[v >>> 4];
+        hexChars[j * 2 + 1] = HEX_ARRAY[v & 0x0F];
+    }
+    return new String(hexChars);
+}
+
+// How we could generate a KOG Client ID
+UUID.randomUUID()
+
+3117ca12-a486-48c4-865f-5015c8086246
+
+// How we should generate a KOG Client Secret
+import java.security.SecureRandom;
+import static java.security.SecureRandom.getSeed;
+
+var bites = new byte[64];
+var sr = SecureRandom.getInstance("NativePRNGNonBlocking");
+sr.setSeed(getSeed(64))
+
+sr.nextBytes(bites)
+
+bytesToHex(bites)
+
+49F1D10F8CD9CBED1CD380A5054D622B85CBE8E515091A4575BC053E2461BE7E0BF089B0DEEEEFC2C60D3BBFA83E5DAAB2A7AAF295F466DA6786E6735F5E0CF1
