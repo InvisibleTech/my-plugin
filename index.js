@@ -37,7 +37,7 @@ app.post('/goodbye-options', (req, res) => {
     ]);
 });
 
-app.post('/entry-sign-in', (req, res) => {
+app.post('/entry-sign-in', async (req, res) => {
     const envoy = req.envoy; // our middleware adds an "envoy" object to req.
     const job = envoy.job;
     const hello = envoy.meta.config.HELLO;
