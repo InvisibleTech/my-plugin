@@ -2,6 +2,7 @@ const express = require('express');
 const { middleware, errorMiddleware } = require('@envoy/envoy-integrations-sdk');
 
 const app = express();
+app.use(errorMiddleware());
 
 app.post('/hello-options', (req, res) => {
     res.send([
@@ -62,8 +63,6 @@ app.post('/entry-sign-out', async (req, res) => {
 
     res.send({ goodbye });
 });
-
-app.use(errorMiddleware());
 
 const listener = app.listen(process.env.PORT || 0, () => {
   console.log(`Listening on port ${listener.address().port}`);
