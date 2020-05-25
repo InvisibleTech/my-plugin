@@ -1,0 +1,39 @@
+{
+'id': '76525257',
+'type': "entries",
+'attributes': {
+'agreements-status': 'not_signed',
+'full-name': 'Echo',
+'email': null,
+'host': null,
+'host-email': null,
+'private-notes': 'And the Bunnymen',
+'signed-in-at': '2020-05-25T13:45:00.000Z',
+'device-session-uuid': null,
+'signed-in-via': 'Dashboard',
+'signed-in-by': 'Peter Charette',
+'signed-out-via': null,
+'signed-out-by': null,
+'thumbnails': { 'large': null, 'original': null, 'small': null },
+'flow-name': 'Visitor',
+'original-nda-sign-date': null,
+'group-name': null,
+'id-check-status': '',
+'is-delivery': false,
+'agreement-refused': false,
+'locality': { 'place-id': '' },
+'pov-key': 'Purpose of visit',
+'user-data': [ [Object], [Object] ],
+'sms-status': 'not_sent',
+'approval-status': null,
+'push-status': 'not_sent',
+'email-status': 'not_sent'
+},
+'relationships': {
+'location': { 'data': [Object] },
+'flow': { 'data': [Object] },
+'previous-entries': { 'links': [Object] },
+'platform-jobs': { 'links': [Object] },
+'agreeable-ndas': { 'data': [Array] }
+}
+}

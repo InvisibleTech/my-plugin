@@ -46,6 +46,7 @@ app.post('/entry-sign-in', async (req, res) => {
     const hello = envoy.meta.config.HELLO;
     const visitor = envoy.payload;
     console.log(envoy.payload);
+    console.log(JSON.stringify(envoy.payload));
     const visitorName = visitor.attributes['full-name'];
 
     const message = `${hello} ${visitorName}!`; // our custom greeting
@@ -60,6 +61,7 @@ app.post('/entry-sign-out', async (req, res) => {
     const goodbye = envoy.meta.config.GOODBYE;
     const visitor = envoy.payload;
     console.log(envoy.payload);
+    console.log(JSON.stringify(envoy.payload));
     const visitorName = visitor.attributes['full-name'];
 
     const message = `${goodbye} ${visitorName}!`;
