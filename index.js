@@ -59,6 +59,7 @@ app.post('/entry-sign-out', async (req, res) => {
     const job = envoy.job;
     const goodbye = envoy.meta.config.GOODBYE;
     const visitor = envoy.payload;
+    console.log(envoy.payload);
     const visitorName = visitor.attributes['full-name'];
 
     const message = `${goodbye} ${visitorName}!`;
