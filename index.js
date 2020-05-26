@@ -45,14 +45,17 @@ app.post('/entry-sign-in', async (req, res) => {
     const job = envoy.job;
     const hello = envoy.meta.config.HELLO;
     const visitor = envoy.payload;
-    console.log(envoy.payload);
+    console.log(">>>>>>>>>>>>>>>>  Envoy payload Sign-in");
     console.log(JSON.stringify(envoy.payload));
+    console.log(">>>>>>>>>>>>>>>>  Envoy meta Sign-in");
     console.log(JSON.stringify(envoy.meta));
     const visitorName = visitor.attributes['full-name'];
 
     const message = `${hello} ${visitorName}!`; // our custom greeting
     await job.attach({ label: 'Hello', value: message }); // show in the Envoy dashboard.
 
+    console.log(">>>>>>>>>>>>>>>>  Response Sign-in");
+    console.log(JSON.stringify(res));
     res.send({ hello });
 });
 
@@ -61,14 +64,17 @@ app.post('/entry-sign-out', async (req, res) => {
     const job = envoy.job;
     const goodbye = envoy.meta.config.GOODBYE;
     const visitor = envoy.payload;
-    console.log(envoy.payload);
+    console.log(">>>>>>>>>>>>>>>>  Envoy payload Sign-out");
     console.log(JSON.stringify(envoy.payload));
+    console.log(">>>>>>>>>>>>>>>>  Envoy meta Sign-out");
     console.log(JSON.stringify(envoy.meta));
     const visitorName = visitor.attributes['full-name'];
 
     const message = `${goodbye} ${visitorName}!`;
     await job.attach({ label: 'Goodbye', value: message });
 
+    console.log(">>>>>>>>>>>>>>>>  Response Sign-out");
+    console.log(JSON.stringify(res));
     res.send({ goodbye });
 });
 
