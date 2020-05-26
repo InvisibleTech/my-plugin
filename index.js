@@ -55,7 +55,7 @@ app.post('/entry-sign-in', async (req, res) => {
     await job.attach({ label: 'Hello', value: message }); // show in the Envoy dashboard.
 
     console.log(">>>>>>>>>>>>>>>>  Response Sign-in");
-    console.log(JSON.stringify(res));
+    console.log(res);
     res.send({ hello });
 });
 
@@ -74,7 +74,7 @@ app.post('/entry-sign-out', async (req, res) => {
     await job.attach({ label: 'Goodbye', value: message });
 
     console.log(">>>>>>>>>>>>>>>>  Response Sign-out");
-    console.log(JSON.stringify(res));
+    console.log(res);
     res.send({ goodbye });
 });
 
