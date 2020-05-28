@@ -202,5 +202,5 @@ start();
 
 console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>> Going to publish \n\n\n");
 
-publish("sign-in", "jobs", new Buffer("work work work"));
-publish("sign-out", "jobs", new Buffer("quark quark quark"));
+publish("", "jobs", new Buffer("work work work"));
+publish("", "jobs", new Buffer("quark quark quark"));
