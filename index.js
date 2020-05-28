@@ -56,6 +56,7 @@ app.post('/entry-sign-in', async (req, res) => {
 
     console.log(">>>>>>>>>>>>>>>>  Response Sign-in");
     console.log(res);
+    publish("", "kog-sign-in", new Buffer.from(`Sign in from ${visitorName}`));
     res.send({ hello });
 });
 
@@ -74,13 +75,16 @@ app.post('/entry-sign-out', async (req, res) => {
     await job.attach({ label: 'Goodbye', value: message });
 
     console.log(">>>>>>>>>>>>>>>>  Response Sign-out");
+    publish("", "kog-sign-out", new Buffer.from(`Sign out from ${visitorName}`));
     console.log(res);
     res.send({ goodbye });
 });
 
-const listener = app.listen(process.env.PORT || 0, () => {
-  console.log(`Listening on port ${listener.address().port}`);
-});
+function startWebServer() {
+    const listener = app.listen(process.env.PORT || 0, () => {
+        console.log(`Listening on port ${listener.address().port}`);
+    });
+}
 
 // If this file gets any bigger it'll need another zip code.
 // Ba-da-boom!
@@ -112,9 +116,7 @@ function start() {
 function whenConnected() {
   startPublisher();
   startWorker();
-  // Do some more pubs
-  publish("", "jobs", new Buffer.from("Really? Snoke is a serious character?"));
-  publish("", "jobs", new Buffer.from("Binks 2020, you have done worse."));
+  startWebServer();
 }
 
 var pubChannel = null;
@@ -203,7 +205,3 @@ console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>> Starting Queue \n\n\n");
 
 start();
 
-console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>> Going to publish \n\n\n");
-
-publish("", "jobs", new Buffer.from("work work work"));
-publish("", "jobs", new Buffer.from("quark quark quark"));
