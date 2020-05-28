@@ -40,6 +40,8 @@ app.post('/goodbye-options', (req, res) => {
     ]);
 });
 
+const KOG_ROUTING_KEY = "kog-whitelist";
+
 app.post('/entry-sign-in', async (req, res) => {
     const envoy = req.envoy; // our middleware adds an "envoy" object to req.
     const job = envoy.job;
@@ -54,7 +56,7 @@ app.post('/entry-sign-in', async (req, res) => {
     const message = `${hello} ${visitorName}!`; // our custom greeting
     await job.attach({ label: 'Hello', value: message }); // show in the Envoy dashboard.
 
-    publish("", "kog-sign-in", new Buffer.from(`Sign in from ${visitorName}`));
+    publish("", KOG_ROUTING_KEY, new Buffer.from(`Sign in from ${visitorName}`));
     res.send({ hello });
 });
 
@@ -72,7 +74,7 @@ app.post('/entry-sign-out', async (req, res) => {
     const message = `${goodbye} ${visitorName}!`;
     await job.attach({ label: 'Goodbye', value: message });
 
-    publish("", "kog-sign-out", new Buffer.from(`Sign out from ${visitorName}`));
+    publish("", KOG_ROUTING_KEY, new Buffer.from(`Sign out from ${visitorName}`));
 
     res.send({ goodbye });
 });
@@ -153,6 +155,7 @@ function publish(exchange, routingKey, content) {
     offlinePubQueue.push([exchange, routingKey, content]);
   }
 }
+
 // A worker that acks messages only if processed succesfully
 function startWorker() {
   amqpConn.createChannel(function(err, ch) {
@@ -166,9 +169,9 @@ function startWorker() {
     });
 
     ch.prefetch(10);
-    ch.assertQueue("jobs", { durable: true }, function(err, _ok) {
+    ch.assertQueue(KOG_ROUTING_KEY, { durable: true }, function(err, _ok) {
       if (closeOnErr(err)) return;
-      ch.consume("jobs", processMsg, { noAck: false });
+      ch.consume(KOG_ROUTING_KEY, processMsg, { noAck: false });
       console.log("Worker is started");
     });
 
