@@ -54,8 +54,6 @@ app.post('/entry-sign-in', async (req, res) => {
     const message = `${hello} ${visitorName}!`; // our custom greeting
     await job.attach({ label: 'Hello', value: message }); // show in the Envoy dashboard.
 
-    console.log(">>>>>>>>>>>>>>>>  Response Sign-in");
-    console.log(res);
     publish("", "kog-sign-in", new Buffer.from(`Sign in from ${visitorName}`));
     res.send({ hello });
 });
@@ -74,9 +72,8 @@ app.post('/entry-sign-out', async (req, res) => {
     const message = `${goodbye} ${visitorName}!`;
     await job.attach({ label: 'Goodbye', value: message });
 
-    console.log(">>>>>>>>>>>>>>>>  Response Sign-out");
     publish("", "kog-sign-out", new Buffer.from(`Sign out from ${visitorName}`));
-    console.log(res);
+
     res.send({ goodbye });
 });
 
@@ -150,6 +147,7 @@ function publish(exchange, routingKey, content) {
                           pubChannel.connection.close();
                         }
                       });
+    console.log("[AMQP] publish", content.toString())
   } catch (e) {
     console.error("[AMQP] publish", e.message);
     offlinePubQueue.push([exchange, routingKey, content]);
