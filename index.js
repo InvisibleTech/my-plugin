@@ -112,6 +112,9 @@ function start() {
 function whenConnected() {
   startPublisher();
   startWorker();
+  // Do some more pubs
+  publish("", "jobs", new Buffer.from(["Really? Snoke is a serious character?"]));
+  publish("", "jobs", new Buffer(["Binks 2020, you have done worse."]));
 }
 
 var pubChannel = null;
@@ -202,5 +205,5 @@ start();
 
 console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>> Going to publish \n\n\n");
 
-publish("", "jobs", new Buffer("work work work"));
-publish("", "jobs", new Buffer("quark quark quark"));
+publish("", "jobs", new Buffer.from(["work work work"]));
+publish("", "jobs", new Buffer.from(["quark quark quark"]));
