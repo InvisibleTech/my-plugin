@@ -3,6 +3,8 @@ const { middleware, errorMiddleware } = require('@envoy/envoy-integrations-sdk')
 
 const app = express();
 
+app.use(express.static('public'));
+
 app.use(middleware());
 app.use(errorMiddleware());
 
