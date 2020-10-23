@@ -44,7 +44,8 @@ app.post('/goodbye-options', (req, res) => {
 
 const KOG_ROUTING_KEY = "kog-whitelist";
 
-app.post('/dump_payload', async () => {
+app.post('/dump_payload', async (req, res) => {
+    console.log(">>>>>>>>>>>>>>>>>>>>>>  DUMPING STUFF >>>>>>>>>>>>>>>>>>>>>>>>");
     const envoy = req.envoy; // our middleware adds an "envoy" object to req.
     console.log(">>>>>>>>>>>>>>>>  Envoy :");
     console.log(JSON.stringify(envoy));
